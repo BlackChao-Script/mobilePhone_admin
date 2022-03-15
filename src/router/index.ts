@@ -7,7 +7,18 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/home',
-    component:()=>import('@/views/home.vue')
+    component: () => import('@/views/home.vue'),
+    redirect: '/home/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard.vue'),
+      },
+      {
+        path: 'goods',
+        component: () => import('@/views/goods.vue'),
+      },
+    ],
   },
 ]
 // 工厂函数创建router实例

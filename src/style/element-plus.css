@@ -13,3 +13,19 @@
 .el-input {
   --el-input-focus-border-color: #101010;
 }
+.el-aside {
+  height: 100vh;
+  background-color: #324157;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.el-menu {
+  height: 90%;
+  border-right: 0 !important;
+}
+.el-header {
+  background-color: #242f42;
+}
