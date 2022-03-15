@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import Hearder from '@/components/common/Header.vue'
 import Aside from '@/components/common/Aside.vue'
+import Tabs from '@/components/common/Tabs.vue'
 </script>
 
 <template>
@@ -13,8 +14,14 @@ import Aside from '@/components/common/Aside.vue'
       <!-- 侧边栏 -->
       <Aside />
       <!-- 主体 -->
+      <!-- 标签栏 -->
       <el-main>
-        <router-view></router-view>
+        <Tabs />
+        <router-view v-slot="{ Component }">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </router-view>
       </el-main>
     </el-container>
   </el-container>

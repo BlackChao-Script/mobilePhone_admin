@@ -29,3 +29,11 @@
 .el-header {
   background-color: #242f42;
 }
+.el-main {
+  padding: 0;
+  background-color: #e5e5e5;
+}
+.el-breadcrumb{
+  line-height: 35px;
+  padding-left: 10px;
+}
