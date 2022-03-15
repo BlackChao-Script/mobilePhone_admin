@@ -1,0 +1,15 @@
+.el-input__inner {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  color: #fff;
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  box-shadow: 0 0 0 0 inset;
+}
+.el-input {
+  --el-input-focus-border-color: #101010;
+}
