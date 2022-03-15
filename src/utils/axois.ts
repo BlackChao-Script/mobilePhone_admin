@@ -75,7 +75,6 @@ export function request(url = '', params = {}, type = '') {
           message: res.message,
           type: 'success',
         })
-        console.log(res.message)
         resolve(res)
       })
       .catch((err: any) => {
