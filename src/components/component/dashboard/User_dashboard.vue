@@ -70,6 +70,9 @@ onMounted(() => {
     .userinfo_name {
       font-size: 30px;
     }
+    .userinfo_type {
+      color: #999999;
+    }
   }
 }
 .admin_bottom {

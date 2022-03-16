@@ -70,11 +70,13 @@ export function request(url = '', params = {}, type = '') {
     // 处理返回
     promise
       .then((res: any) => {
-        ElNotification({
-          title: '成功',
-          message: res.message,
-          type: 'success',
-        })
+        if (res.message !== '') {
+          ElNotification({
+            title: '成功',
+            message: res.message,
+            type: 'success',
+          })
+        }
         resolve(res)
       })
       .catch((err: any) => {

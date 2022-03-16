@@ -14,4 +14,15 @@ export class UserService {
   static async modify(params: object) {
     return request('user/modify', params, 'PATCH')
   }
+  // 获取用户数量
+  static async userNumber(params: object) {
+    return request('/user', params, 'GET')
+  }
+}
+// 商品接口
+export class GoodsService {
+  // 获取商品数量
+  static async goodsNum(params: object) {
+    return request('/goods/getnumber', params, 'GET')
+  }
 }

@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const Routername = ref<string>('')
+const Routername = ref<string>('系统首页')
 
 
 
@@ -12,7 +12,10 @@ watch(route, to => {
 })
 
 onMounted(() => {
-  Routername.value = window.sessionStorage.getItem('Routername') as string
+  if (window.sessionStorage.getItem('Routername') == '') {
+    Routername.value = window.sessionStorage.getItem('Routername') as string
+  }
+
 })
 
 
