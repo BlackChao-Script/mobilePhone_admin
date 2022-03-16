@@ -19,6 +19,21 @@ export default function () {
     const { token } = res.result
     window.sessionStorage.setItem('token', token)
     router.push('/home')
+    // 获取当前登录时间
+    const getnowTime = () => {
+      const date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      if (month < 10) {
+        month = ('0' + month) as any
+      }
+      if (day < 10) {
+        day = ('0' + day) as any
+      }
+      return year + '-' + month + '-' + day
+    }
+    window.sessionStorage.setItem('nowTime', getnowTime())
   }
   // 注册
   const registerClick = async () => {

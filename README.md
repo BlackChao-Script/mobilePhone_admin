@@ -1,11 +1,12 @@
-# Vue 3 + Typescript + Vite
+# mobilePhone商城开发
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+mobilePhone商城 项目市一套电商系统，包括: mobilePhone_mall (pc网页端)、mobilePhone_app(pe网页端)、mobilePhone_miniapp(小程序)、mobilePhone_admin(后台管理系统)、mobilePhone_api(数据接口)
 
-## Recommended IDE Setup
+基于`node.js` 、 `vue`  与  `uniapp` 以及相关技术栈开发。
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+**前台商城包含**：首页门户、商品推荐、首页轮播、商品搜索、商品展示、购物车、订单结算、个人订单等模块。
 
-## Type Support For `.vue` Imports in TS
+**后台管理系统包含**：数据面板、轮播图管理、商品管理、订单管理、设置等模块。
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+本仓库中的源码是mobilePhone商城的后台管理系统项目，技术栈为: `Vue3 + Ts`。
+

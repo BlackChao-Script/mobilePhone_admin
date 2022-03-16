@@ -5,7 +5,7 @@ const {
   loginUserParams,
   registerUserParams,
   loginClick,
-  registerClick
+  registerClick,
 } = LoginHooks()
 
 </script>
@@ -25,7 +25,12 @@ const {
           </div>
           <div class="group">
             <label for="pass" class="label">密码</label>
-            <el-input type="password" v-model="loginUserParams.password" show-password placeholder="请输入密码" />
+            <el-input
+              type="password"
+              v-model="loginUserParams.password"
+              show-password
+              placeholder="请输入密码"
+            />
           </div>
           <div class="group">
             <label for="check" style="color:#fff">登录表示您已同意《服务条款》</label>
@@ -42,7 +47,12 @@ const {
           </div>
           <div class="group">
             <label for="pass" class="label">密码</label>
-            <el-input type="password" v-model="registerUserParams.password" show-password placeholder="请输入密码" />
+            <el-input
+              type="password"
+              v-model="registerUserParams.password"
+              show-password
+              placeholder="请输入密码"
+            />
           </div>
           <div class="group">
             <label for="check" style="color:#fff">注册表示您已同意《服务条款》</label>
@@ -116,6 +126,7 @@ a {
 .login-form .group .button {
   text-transform: uppercase;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .login-html .tab {
   font-size: 22px;
