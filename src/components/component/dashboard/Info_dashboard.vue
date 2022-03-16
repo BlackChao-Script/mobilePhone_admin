@@ -1,21 +1,29 @@
 <script setup lang='ts'>
-import { UserService, GoodsService } from '@/api/api'
+import { UserService, GoodsService, OrderService } from '@/api/api'
 
 const userNumber = ref<number>(0)
 const goodsNumber = ref<number>(0)
+const orderNumber = ref<number>(0)
 
-const getuserNumber = async () => {
-  const res = await UserService.userNumber({}) as any
-  userNumber.value = res.result.number
-}
-const getgoodsNumber = async () => {
-  const res = await GoodsService.goodsNum({}) as any
-  goodsNumber.value = res.result.number
+const getNumber = async (dataType: string) => {
+  if (dataType == 'user') {
+    const res = await UserService.num({}) as any
+    userNumber.value = res.result.number
+  }
+  if (dataType == 'goods') {
+    const res = await GoodsService.num({}) as any
+    goodsNumber.value = res.result.number
+  }
+  if (dataType == 'order') {
+    const res = await OrderService.num({}) as any
+    orderNumber.value = res.result.number
+  }
 }
 
 onMounted(() => {
-  getuserNumber()
-  getgoodsNumber()
+  getNumber('user')
+  getNumber('goods')
+  getNumber('order')
 })
 
 </script>
@@ -55,7 +63,7 @@ onMounted(() => {
         </el-icon>
       </div>
       <div class="user_info">
-        <div class="info_number fca">{{ userNumber }}</div>
+        <div class="info_number fca">{{ orderNumber }}</div>
         <div class="info_title">订单数量</div>
       </div>
     </div>

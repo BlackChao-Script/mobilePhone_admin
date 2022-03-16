@@ -15,14 +15,21 @@ export class UserService {
     return request('user/modify', params, 'PATCH')
   }
   // 获取用户数量
-  static async userNumber(params: object) {
-    return request('/user', params, 'GET')
+  static async num(params: object) {
+    return request('user', params, 'GET')
   }
 }
 // 商品接口
 export class GoodsService {
   // 获取商品数量
-  static async goodsNum(params: object) {
-    return request('/goods/getnumber', params, 'GET')
+  static async num(params: object) {
+    return request('goods/getnumber', params, 'GET')
+  }
+}
+// 订单接口
+export class OrderService {
+  // 获取订单数量
+  static async num(params: object) {
+    return request('order/ordernum', params, 'GET')
   }
 }

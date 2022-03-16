@@ -1,15 +1,18 @@
 <script setup lang='ts'>
 
 const nowTime = ref<string>('')
-// const Tmap = () => {
-//   window.addEventListener('message', function (event) {
-//     window.sessionStorage.setItem('loginAddress', event.data)
-//   }, false)
-// }
+const loginAddress = ref<string>('')
+
+const Tmap = () => {
+  window.addEventListener('message', function (event) {
+    window.sessionStorage.setItem('loginAddress', event.data.city)
+  }, false)
+}
 
 onMounted(() => {
   nowTime.value = window.sessionStorage.getItem('nowTime') as string
-  // Tmap()
+  loginAddress.value = window.sessionStorage.getItem('loginAddress') as string
+  Tmap()
 })
 </script>
 
@@ -24,7 +27,7 @@ onMounted(() => {
         <div class="userinfo_type">超级管理员</div>
       </div>
     </div>
-    <hr />
+    <el-divider />
     <div class="admin_bottom">
       <div class="bottom_time">
         <div class="time_text">上次登录时间:</div>
@@ -32,9 +35,9 @@ onMounted(() => {
       </div>
       <div class="bottom_address">
         <div class="address_text">上次登录地点:</div>
-        <div class="address_info">宜春</div>
+        <div class="address_info">{{ loginAddress }}</div>
       </div>
-      <!-- <iframe
+      <iframe
         id="geoPage"
         width="0"
         height="0"
@@ -42,7 +45,7 @@ onMounted(() => {
         style="display:none;"
         scrolling="no"
         src="https://apis.map.qq.com/tools/geolocation?key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp"
-      ></iframe>-->
+      ></iframe>
     </div>
   </el-card>
 </template>
