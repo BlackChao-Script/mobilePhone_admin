@@ -1,52 +1,17 @@
 <script setup lang='ts'>
-import { ElNotification } from 'element-plus'
+import TodoHooks from '@/hooks/TodoHooks'
+const {
+  todoListData,
+  addInput,
+  addtodo,
+  gettodo,
+  deleteTodo,
+  changeCheck,
+} = TodoHooks()
 
-const todoListData = ref<any[]>([
-  {
-    id: 1,
-    text: '写代码',
-    check: false
-  },
-  {
-    id: 2,
-    text: '玩游戏',
-    check: true
-  },
-])
-const addInput = ref<string>('')
-
-const addtodo = () => {
-  if (todoListData.value.length == 6) {
-    ElNotification({
-      title: '失败',
-      message: '任务不能超过6个',
-      type: 'warning',
-    })
-    return
-  }
-  if (addInput.value.trim() == '') {
-    ElNotification({
-      title: '失败',
-      message: '添加任务不能为空',
-      type: 'error',
-    })
-    return
-  }
-  const todo = {
-    id: Math.floor(Math.random() * 101),
-    text: addInput.value,
-    check: false
-  }
-  const newTodo = [todo, ...todoListData.value]
-  todoListData.value = newTodo
-  addInput.value = ''
-}
-const deleteTodo = (id: number) => {
-  const todo = todoListData.value.filter((item) => {
-    return item.id !== id
-  })
-  todoListData.value = todo
-}
+onMounted(() => {
+  gettodo()
+})
 
 </script>
 
@@ -62,7 +27,7 @@ const deleteTodo = (id: number) => {
     <div class="todo_list">
       <div class="list" v-for="item in todoListData" :key="item.id">
         <div class="list_checkbox">
-          <el-checkbox v-model="item.check" size="large" />
+          <el-checkbox @change="changeCheck(item.id)" v-model="item.check" size="large" />
         </div>
         <div class="list_name">{{ item.text }}</div>
         <div class="list_icon">
@@ -104,6 +69,9 @@ const deleteTodo = (id: number) => {
     }
     .list_name {
       width: 80%;
+    }
+    .list_icon {
+      cursor: pointer;
     }
     &:hover {
       background-color: #f5f7fa;
