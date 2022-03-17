@@ -80,7 +80,7 @@ onMounted(() => {
 }
 .admin_bottom {
   color: #999999;
-  height: 73px;
+  height: 45px;
   font-size: 15px;
   display: flex;
   flex-direction: column;

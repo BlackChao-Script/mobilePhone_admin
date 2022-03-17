@@ -3,7 +3,8 @@ import UserDashboard from '@/components/component/dashboard/User_dashboard.vue'
 import LanguageDashboard from '@/components/component/dashboard/Language_dashboard.vue'
 import InfoDashboard from '@/components/component/dashboard/Info_dashboard.vue'
 import TodoDashboard from '@/components/component/dashboard/Todo_dashboard.vue'
-import EchartsDashboard from '@/components/component/dashboard/Echarts_dashboard.vue'
+import Sale from '@/components/component/dashboard/Sale.vue'
+import Stacked from '@/components/component/dashboard/Stacked.vue'
 
 </script>
 
@@ -22,7 +23,8 @@ import EchartsDashboard from '@/components/component/dashboard/Echarts_dashboard
   </div>
 
   <div class="dashboard_bottom">
-    <EchartsDashboard />
+    <Sale />
+    <Stacked />
   </div>
 </template>
 
@@ -30,7 +32,7 @@ import EchartsDashboard from '@/components/component/dashboard/Echarts_dashboard
 .dashboard_top {
   display: flex;
   width: 100%;
-  height: 530px;
+  height: 480px;
   .dashboard_left {
     flex: 1;
     display: flex;
@@ -53,7 +55,7 @@ import EchartsDashboard from '@/components/component/dashboard/Echarts_dashboard
     .right_icon {
       margin-top: 15px;
       width: 98%;
-      height: 23%;
+      height: 25%;
       display: flex;
       justify-content: space-between;
     }
@@ -66,7 +68,7 @@ import EchartsDashboard from '@/components/component/dashboard/Echarts_dashboard
 
 .dashboard_bottom {
   margin-top: 20px;
-  height: 29%;
+  height: 350px;
   display: flex;
   justify-content: space-around;
 }

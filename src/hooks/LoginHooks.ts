@@ -1,7 +1,7 @@
 import { UserService } from '@/api/api'
 import { UserParamsType } from '@/types/login'
 import { useRouter } from 'vue-router'
-export default function () {
+const LoginHooks = () => {
   const router = useRouter()
   // 登录数据
   const loginUserParams = reactive<UserParamsType>({
@@ -48,3 +48,5 @@ export default function () {
     registerClick,
   }
 }
+
+export default LoginHooks

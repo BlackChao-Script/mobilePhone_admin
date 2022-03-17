@@ -4,14 +4,9 @@ const {
   todoListData,
   addInput,
   addtodo,
-  gettodo,
   deleteTodo,
   changeCheck,
 } = TodoHooks()
-
-onMounted(() => {
-  gettodo()
-})
 
 </script>
 

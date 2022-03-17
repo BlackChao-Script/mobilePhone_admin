@@ -1,7 +1,7 @@
 import { ElNotification } from 'element-plus'
 import { TodoService } from '@/api/api'
 
-export default function () {
+const TodoHooks = () => {
   // todo列表数据
   const todoListData = ref<any[]>([])
   // 添加todo数据
@@ -11,6 +11,14 @@ export default function () {
   const gettodo = async () => {
     const res = (await TodoService.get({})) as any
     todoListData.value = res.result
+    const bool = todoListData.value.every((value) => value.check == true)
+    if (bool == true) {
+      ElNotification({
+        title: '很好',
+        message: '任务都完成了！！',
+        type: 'success',
+      })
+    }
   }
   //添加todo
   const addtodo = async () => {
@@ -57,12 +65,16 @@ export default function () {
     }
     gettodo()
   }
+  onMounted(() => {
+    gettodo()
+  })
   return {
     todoListData,
     addInput,
     addtodo,
-    gettodo,
     deleteTodo,
     changeCheck,
   }
 }
+
+export default TodoHooks
