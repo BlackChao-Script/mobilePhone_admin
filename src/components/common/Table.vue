@@ -13,7 +13,7 @@ const props: any = defineProps({
     </div>
 
     <el-table :data="props.TableData" style="width: 100%">
-      <template v-for="item in props.columns" :key="item.prop">
+      <template v-for="item in props.columns" :key="item.label">
         <el-table-column v-bind="item" show-overflow-tooltip align="center">
           <template v-if="item.__slotName" #default="scope">
             <slot :name="item.__slotName" :data="scope"></slot>

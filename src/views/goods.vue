@@ -1,14 +1,8 @@
 <script setup lang='ts'>
 import Table from '@/components/common/Table.vue'
-import { GoodsService } from '@/api/api'
-import { PagDataTyoe } from '@/types'
-// 商品表格数据
-const goodsTableData = ref<Array<any>>([])
-// 商品分页数据
-const goodsPagData = reactive<PagDataTyoe>({
-  pageNum: 1,
-  pageSize: 12
-})
+import Drawer from '@/components/common/Drawer.vue'
+import TableHook from '@/hooks/TableHooks'
+import DrawerHooks from '@/hooks/DrawerHooks'
 // 商品分类表格columns数据
 const columns = ref<Array<any>>([
   { label: 'Id', prop: 'id' },
@@ -16,28 +10,23 @@ const columns = ref<Array<any>>([
   { label: '商品价格', prop: 'goods_price' },
   { label: '商品图片', prop: 'goods_img', __slotName: 'goodsImg' },
   { label: '添加时间', prop: 'createGoodsTime' },
+  { label: '操作', __slotName: 'operation' },
 ])
+// 添加表单格式数据
+const Form = ref<any>()
 
-// 获取商品表格数据
-const getGoodsTableData = async () => {
-  const res = await GoodsService.get(goodsPagData) as any
-  res.result.list.forEach((value: any) => {
-    value.createGoodsTime = value.createGoodsTime.split('T')[0]
-  })
-  goodsTableData.value = res.result.list
-}
+// 使用Hooks
+const { TableData, delTableData } = TableHook('goods')
+const { DrawerRef, openDrawer } = DrawerHooks('goods')
 
-onMounted(() => {
-  getGoodsTableData()
-})
 
 </script>
 
 <template>
   <el-card>
-    <Table :TableData="goodsTableData" :columns="columns">
+    <Table :TableData="TableData" :columns="columns">
       <template #table_button>
-        <el-button color="#324157" style="color:#fff">添加商品</el-button>
+        <el-button color="#324157" style="color:#fff" @click="openDrawer">添加商品</el-button>
       </template>
       <template #goodsImg="slotProps">
         <el-image
@@ -46,7 +35,17 @@ onMounted(() => {
           :preview-src-list="[slotProps.data.row.goods_img]"
         />
       </template>
+      <template #operation="slotProps">
+        <el-button round color="#64d572" style="color: #fff">编辑</el-button>
+        <el-button
+          round
+          color="#f25e43"
+          style="color: #fff"
+          @click="delTableData(slotProps.data.row.id)"
+        >下架</el-button>
+      </template>
     </Table>
+    <Drawer ref="DrawerRef" />
   </el-card>
 </template>
 
