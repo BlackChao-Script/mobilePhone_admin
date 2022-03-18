@@ -1,5 +1,5 @@
 import { UserService } from '@/api/api'
-import { UserParamsType } from '@/types/login'
+import { UserParamsType } from '@/types'
 import { useRouter } from 'vue-router'
 const LoginHooks = () => {
   const router = useRouter()

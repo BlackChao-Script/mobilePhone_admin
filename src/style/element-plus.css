@@ -40,3 +40,6 @@
 .el-card__body {
   padding: 0;
 }
+.el-image-viewer__mask {
+  background: #fff;
+}
