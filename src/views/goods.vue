@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
+import Pagination from '@/components/common/Pagination.vue'
 import TableHook from '@/hooks/TableHooks'
 import DrawerHooks from '@/hooks/DrawerHooks'
 // 商品分类表格columns数据
@@ -61,8 +62,8 @@ const formData = ref<object>({
   sort_id: '',
 })
 // 使用Hooks
-const { TableData, getTableData, delTableData } = TableHook('goods')
-const { openDrawer } = DrawerHooks('goods')
+const { TableData, PagData, getTableData, delTableData } = TableHook('goods')
+const { store } = DrawerHooks('goods')
 
 onMounted(() => {
   getTableData()
@@ -75,7 +76,7 @@ onMounted(() => {
   <el-card>
     <Table :TableData="TableData" :columns="columns">
       <template #table_button>
-        <el-button color="#324157" style="color:#fff" @click="openDrawer">添加商品</el-button>
+        <el-button color="#324157" style="color:#fff" @click="store.changDrawer()">添加商品</el-button>
       </template>
       <template #goodsImg="slotProps">
         <el-image
@@ -96,6 +97,7 @@ onMounted(() => {
     </Table>
     <Drawer btnNumber="添加商品" :formData="formData" :FormItem="goodsFormItem" />
   </el-card>
+  <Pagination :PagData="PagData" @getTableData="getTableData" />
 </template>
 
 <style scoped lang="less">

@@ -7,4 +7,5 @@ export type UserParamsType = {
 export type PagDataTyoe = {
   pageNum: number
   pageSize: number
+  total: number
 }

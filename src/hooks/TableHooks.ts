@@ -7,16 +7,18 @@ const TableHook = (type: string) => {
   // 分页数据
   const PagData = reactive<PagDataTyoe>({
     pageNum: 1,
-    pageSize: 12,
+    pageSize: 8,
+    total: 0,
   })
   // 获取表格数据
   const getTableData = async () => {
     // 获取商品数据
     if (type == 'goods') {
-      const res = (await GoodsService.get(TableData)) as any
+      const res = (await GoodsService.get(PagData)) as any
       res.result.list.forEach((value: any) => {
         value.createGoodsTime = value.createGoodsTime.split('T')[0]
       })
+      PagData.total = res.result.total
       TableData.value = res.result.list
     }
     // 获取分类数据

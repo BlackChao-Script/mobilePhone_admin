@@ -1,16 +1,16 @@
 import { ElNotification } from 'element-plus'
 import { GoodsService } from '@/api/api'
 import TableHook from '@/hooks/TableHooks'
+import { useStore } from '@/store'
 
 const DrawerHooks = (type: string, formData?: any) => {
+  const store = useStore()
   // 禁用上传图片
   const disabledUpload = ref<boolean>(false)
   // 表单Ref
   const FormRef = ref<HTMLElement | any>(null)
   //  获取表格对应数据使用TableHook
   const { getTableData } = TableHook(type)
-  // 打开添加商品抽屉
-  const openDrawer = () => {}
   // 关闭抽屉的钩子
   const closeDrawer = () => {
     for (let i in formData) {
@@ -54,15 +54,16 @@ const DrawerHooks = (type: string, formData?: any) => {
         formData.goods_num = parseInt(formData.goods_num)
         formData.goods_img = formData.goods_img.split('/')[4]
         await GoodsService.add(formData)
+        store.changDrawer()
         getTableData()
       }
     })
   }
 
   return {
+    store,
     FormRef,
     disabledUpload,
-    openDrawer,
     closeDrawer,
     successImg,
     errorImg,

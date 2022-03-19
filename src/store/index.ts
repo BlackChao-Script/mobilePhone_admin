@@ -15,5 +15,8 @@ export const useStore = defineStore({
       if (window.sessionStorage.getItem('path') == null) return
       this.path = window.sessionStorage.getItem('path') as string
     },
+    changDrawer() {
+      this.drawer = !this.drawer
+    },
   },
 })

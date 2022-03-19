@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import DrawerHooks from '@/hooks/DrawerHooks'
 
-
 // 接收props
 const { btnNumber, formData, FormItem }: any = defineProps({
   btnNumber: String,
@@ -9,11 +8,11 @@ const { btnNumber, formData, FormItem }: any = defineProps({
   FormItem: Array,
 })
 
-
 const {
+  store,
   disabledUpload,
-  FormRef,
   closeDrawer,
+  FormRef,
   successImg,
   errorImg,
   handleExceed,
@@ -23,7 +22,7 @@ const {
 </script>
 
 <template>
-  <el-drawer @close="closeDrawer">
+  <el-drawer v-model="store.drawer" @close="closeDrawer">
     <template #title>
       <h4>{{ btnNumber }}</h4>
     </template>
