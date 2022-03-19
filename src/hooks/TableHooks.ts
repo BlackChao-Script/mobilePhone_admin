@@ -31,9 +31,6 @@ const TableHook = (type: string) => {
       getTableData()
     }
   }
-  onMounted(() => {
-    getTableData()
-  })
   return {
     TableData,
     PagData,

@@ -12,12 +12,61 @@ const columns = ref<Array<any>>([
   { label: '添加时间', prop: 'createGoodsTime' },
   { label: '操作', __slotName: 'operation' },
 ])
-// 添加表单格式数据
-const Form = ref<any>()
+// 添加表单Item数据
+const goodsFormItem = ref<Array<any>>([
+  {
+    label: '商品名称',
+    field: 'goods_name',
+    itemType: 'input',
+    placeholder: '请输入商品名称'
+  },
+  {
+    label: '商品价格',
+    field: 'goods_price',
+    itemType: 'input',
+    placeholder: '请输入商品价格'
+  },
+  {
+    label: '商品数量',
+    field: 'goods_num',
+    itemType: 'input',
+    placeholder: '请输入商品价格'
+  },
+  {
+    label: '分类id',
+    field: 'sort_id',
+    itemType: 'input',
+    placeholder: '请输入分类id'
+  },
+  {
+    label: '商品照片',
+    field: 'goods_img',
+    itemType: 'upload',
+    placeholder: '请输入商品照片',
+    option: {
+      uploadURL: '/api/upload',
+      headerObj: {
+        Authorization: window.sessionStorage.getItem('token'),
+      }
+    }
+  }
 
+])
+// 表单数据
+const formData = ref<object>({
+  goods_name: '',
+  goods_price: '',
+  goods_num: '',
+  goods_img: '',
+  sort_id: '',
+})
 // 使用Hooks
-const { TableData, delTableData } = TableHook('goods')
-const { DrawerRef, openDrawer } = DrawerHooks('goods')
+const { TableData, getTableData, delTableData } = TableHook('goods')
+const { openDrawer } = DrawerHooks('goods')
+
+onMounted(() => {
+  getTableData()
+})
 
 
 </script>
@@ -45,7 +94,7 @@ const { DrawerRef, openDrawer } = DrawerHooks('goods')
         >下架</el-button>
       </template>
     </Table>
-    <Drawer ref="DrawerRef" />
+    <Drawer btnNumber="添加商品" :formData="formData" :FormItem="goodsFormItem" />
   </el-card>
 </template>
 

@@ -1,8 +1,10 @@
 import { UserService } from '@/api/api'
 import { UserParamsType } from '@/types'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/store'
 const LoginHooks = () => {
   const router = useRouter()
+  const store = useStore()
   // 登录数据
   const loginUserParams = reactive<UserParamsType>({
     user_name: 'admin',
@@ -34,6 +36,8 @@ const LoginHooks = () => {
       return year + '-' + month + '-' + day
     }
     window.sessionStorage.setItem('nowTime', getnowTime())
+    window.sessionStorage.removeItem('path')
+    store.changPath()
   }
   // 注册
   const registerClick = async () => {
