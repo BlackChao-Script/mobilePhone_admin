@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { ElNotification } from 'element-plus'
-import { GoodsService } from '@/api/api'
+import { GoodsService, SortService } from '@/api/api'
 import { useStore } from '@/store'
 import TableHook from '@/hooks/TableHooks'
 
@@ -63,11 +63,10 @@ const submitForm = () => {
     //* 商品
     if (type == 'goods') {
       if (store.showEdit) {
-        const { id, ...params } = formData.value
+        const { createGoodsTime, deletedAt, id, ...params } = formData.value
         params.goods_img = params.goods_img.split('/')[4]
         params.goods_num = params.goods_num * 1
         params.goods_price = params.goods_price * 1
-        console.log(params.goods_num)
         await GoodsService.update(id, params)
       } else {
         formData.value.goods_price = formData.value.goods_price * 1
@@ -76,9 +75,18 @@ const submitForm = () => {
         formData.value.goods_img = formData.goods_img.split('/')[4]
         await GoodsService.add(formData.value)
       }
-      store.changDrawer()
-      getTableData()
     }
+    if (type == 'sort') {
+      if (store.showEdit) {
+        const { id, sort_name } = formData.value
+        await SortService.update(id, { sort_name })
+      } else {
+        await SortService.add(formData.value)
+      }
+
+    }
+    store.changDrawer()
+    getTableData()
   })
 
 }

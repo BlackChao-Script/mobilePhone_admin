@@ -3,6 +3,7 @@ const Home = () => import('@/views/home.vue')
 const Login = () => import('@/views/login.vue')
 const Dashboard = () => import('@/views/dashboard.vue')
 const Goods = () => import('@/views/goods.vue')
+const Sort = () => import('@/views/sort.vue')
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/login' },
   {
@@ -30,6 +31,15 @@ const routes: Array<RouteRecordRaw> = [
           KeepAlive: true,
           comp: Goods,
           name: '商品管理',
+        },
+      },
+      {
+        path: 'sort',
+        component: Sort,
+        meta: {
+          KeepAlive: true,
+          comp: Sort,
+          name: '分类管理',
         },
       },
     ],

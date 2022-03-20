@@ -17,7 +17,7 @@ export default[
         "id": "103",
         "authName": "分类管理",
         "children": "",
-        "path": "order"
+        "path": "sort"
       },
       {
         "id": "104",

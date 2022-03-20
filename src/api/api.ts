@@ -46,6 +46,29 @@ export class GoodsService {
     return request('goods', params, 'GET')
   }
 }
+//! 分类接口
+export class SortService {
+  // 获取分类列表
+  static async get(params: object) {
+    return request('sort/getsort', params, 'GET')
+  }
+  // 修改分类
+  static async update(id: number, params: object) {
+    return request(`sort/${id}`, params, 'PUT')
+  }
+  // 获取分类详细
+  static async getData(params: object) {
+    return request('sort/getsortdata', params, 'GET')
+  }
+  // 添加分类
+  static async add(param: object) {
+    return request('sort/addsort', param, 'POST')
+  }
+  // 删除分类
+  static async rem(id: number, params: object) {
+    return request(`sort/${id}`, params, 'DELETE')
+  }
+}
 //! 订单接口
 export class OrderService {
   // 获取订单数量

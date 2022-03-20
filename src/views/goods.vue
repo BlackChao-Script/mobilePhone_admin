@@ -2,10 +2,7 @@
 import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
 import Pagination from '@/components/common/Pagination.vue'
-import { useStore } from '@/store'
 import TableHook from '@/hooks/TableHooks'
-
-const store = useStore()
 
 //! 数据
 // 商品分类表格columns数据
@@ -58,38 +55,12 @@ const goodsFormItem = ref<Array<any>>([
   }
 
 ])
-// 表单数据
-const formData = ref<any>({
-  goods_name: '',
-  goods_price: '',
-  goods_num: '',
-  goods_img: '',
-  sort_id: '',
-})
-
-provide('formData', formData)
 
 //! 使用Hooks
 // 使用TableHook Hooks
-const { TableData, PagData, getTableData, delTableData } = TableHook('goods')
+const { TableData, PagData, formData, editDrawer, closeDrawer, addGoods, getTableData, delTableData } = TableHook('goods')
 
-//! 方法
-// 打开编辑数据抽屉
-const editDrawer = async (data: any) => {
-  store.changDrawer()
-  store.showEdit = true
-  const { createGoodsTime, deletedAt, ...params } = data
-  formData.value = params
-}
-// 点击添加
-const addGoods = () => {
-  store.changDrawer()
-  store.showEdit = false
-}
-// 关闭抽屉回调
-const closeDrawer = () => {
-  formData.value = {}
-}
+provide('formData', formData)
 
 onMounted(() => {
   getTableData()

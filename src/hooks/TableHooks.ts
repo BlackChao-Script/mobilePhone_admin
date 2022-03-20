@@ -1,7 +1,9 @@
-import { GoodsService } from '@/api/api'
+import { GoodsService, SortService } from '@/api/api'
 import { PagDataTyoe } from '@/types'
+import { useStore } from '@/store'
 
 const TableHook = (type: string) => {
+  const store = useStore()
   // 表格数据
   const TableData = ref<Array<any>>([])
   // 分页数据
@@ -10,6 +12,24 @@ const TableHook = (type: string) => {
     pageSize: 8,
     total: 0,
   })
+  // 表单数据
+  let formData = ref<any>({})
+  // 商品表单数据
+  if (type == 'goods') {
+    formData = ref({
+      goods_name: '',
+      goods_price: '',
+      goods_num: '',
+      goods_img: '',
+      sort_id: '',
+    })
+  }
+  // 分类表单数据
+  if (type == 'sort') {
+    formData = ref({
+      sort_name: '',
+    })
+  }
   // 获取表格数据
   const getTableData = async () => {
     // 获取商品数据
@@ -22,6 +42,10 @@ const TableHook = (type: string) => {
       TableData.value = res.result.list
     }
     // 获取分类数据
+    if (type == 'sort') {
+      const res = (await SortService.get({})) as any
+      TableData.value = res.result
+    }
     // 获取轮播图数据
     // 获取地址数据
     // 获取订单数据
@@ -32,11 +56,34 @@ const TableHook = (type: string) => {
       await GoodsService.off(id, {})
       getTableData()
     }
+    if ((type = 'sort')) {
+      await SortService.rem(id, {})
+      getTableData()
+    }
+  }
+  // 打开编辑数据抽屉
+  const editDrawer = async (data: any) => {
+    store.changDrawer()
+    store.showEdit = true
+    formData.value = data
+  }
+  // 关闭抽屉回调
+  const closeDrawer = () => {
+    formData.value = {}
+  }
+  // 点击添加
+  const addGoods = () => {
+    store.changDrawer()
+    store.showEdit = false
   }
 
   return {
     TableData,
     PagData,
+    formData,
+    editDrawer,
+    closeDrawer,
+    addGoods,
     getTableData,
     delTableData,
   }
