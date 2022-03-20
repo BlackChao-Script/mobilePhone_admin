@@ -33,6 +33,7 @@ const TableHook = (type: string) => {
       getTableData()
     }
   }
+
   return {
     TableData,
     PagData,

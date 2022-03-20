@@ -15,7 +15,6 @@ import Tabs from '@/components/common/Tabs.vue'
       <Aside />
       <!-- 主体 -->
       <!-- 标签栏 -->
-
       <el-main>
         <Tabs />
         <router-view v-slot="{ Component }">

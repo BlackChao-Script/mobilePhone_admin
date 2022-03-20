@@ -2,18 +2,23 @@
 import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
 import Pagination from '@/components/common/Pagination.vue'
+import { useStore } from '@/store'
 import TableHook from '@/hooks/TableHooks'
-import DrawerHooks from '@/hooks/DrawerHooks'
+
+const store = useStore()
+
+//! 数据
 // 商品分类表格columns数据
 const columns = ref<Array<any>>([
   { label: 'Id', prop: 'id' },
   { label: '商品名称', prop: 'goods_name' },
   { label: '商品价格', prop: 'goods_price' },
   { label: '商品图片', prop: 'goods_img', __slotName: 'goodsImg' },
+  { label: '库存', prop: 'goods_num' },
   { label: '添加时间', prop: 'createGoodsTime' },
   { label: '操作', __slotName: 'operation' },
 ])
-// 添加表单Item数据
+// 商品表单Item数据
 const goodsFormItem = ref<Array<any>>([
   {
     label: '商品名称',
@@ -54,16 +59,37 @@ const goodsFormItem = ref<Array<any>>([
 
 ])
 // 表单数据
-const formData = ref<object>({
+const formData = ref<any>({
   goods_name: '',
   goods_price: '',
   goods_num: '',
   goods_img: '',
   sort_id: '',
 })
-// 使用Hooks
+
+provide('formData', formData)
+
+//! 使用Hooks
+// 使用TableHook Hooks
 const { TableData, PagData, getTableData, delTableData } = TableHook('goods')
-const { store } = DrawerHooks('goods')
+
+//! 方法
+// 打开编辑数据抽屉
+const editDrawer = async (data: any) => {
+  store.changDrawer()
+  store.showEdit = true
+  const { createGoodsTime, deletedAt, ...params } = data
+  formData.value = params
+}
+// 点击添加
+const addGoods = () => {
+  store.changDrawer()
+  store.showEdit = false
+}
+// 关闭抽屉回调
+const closeDrawer = () => {
+  formData.value = {}
+}
 
 onMounted(() => {
   getTableData()
@@ -74,9 +100,10 @@ onMounted(() => {
 
 <template>
   <el-card>
+    <!-- 表格 -->
     <Table :TableData="TableData" :columns="columns">
       <template #table_button>
-        <el-button color="#324157" style="color:#fff" @click="store.changDrawer()">添加商品</el-button>
+        <el-button color="#324157" style="color:#fff" @click="addGoods">添加商品</el-button>
       </template>
       <template #goodsImg="slotProps">
         <el-image
@@ -86,7 +113,12 @@ onMounted(() => {
         />
       </template>
       <template #operation="slotProps">
-        <el-button round color="#64d572" style="color: #fff">编辑</el-button>
+        <el-button
+          round
+          color="#64d572"
+          style="color: #fff"
+          @click="editDrawer(slotProps.data.row)"
+        >编辑</el-button>
         <el-button
           round
           color="#f25e43"
@@ -95,8 +127,10 @@ onMounted(() => {
         >下架</el-button>
       </template>
     </Table>
-    <Drawer btnNumber="添加商品" :formData="formData" :FormItem="goodsFormItem" />
   </el-card>
+  <!-- 抽屉 -->
+  <Drawer :FormItem="goodsFormItem" type="goods" btnNumber="添加(修改)商品" @closeDrawer="closeDrawer" />
+  <!-- 分页器 -->
   <Pagination :PagData="PagData" @getTableData="getTableData" />
 </template>
 

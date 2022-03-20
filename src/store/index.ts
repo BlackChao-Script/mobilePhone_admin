@@ -6,6 +6,7 @@ export const useStore = defineStore({
     asideOpen: true,
     path: '/home/dashboard',
     drawer: false,
+    showEdit: false,
   }),
   actions: {
     changAsideOpen() {
