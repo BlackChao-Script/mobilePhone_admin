@@ -24,7 +24,7 @@ onMounted(() => {
       </div>
       <div class="top_userinfo">
         <div class="userinfo_name">admin</div>
-        <div class="userinfo_type">超级管理员</div>
+        <div class="userinfo_type">管理员</div>
       </div>
     </div>
     <el-divider />
@@ -32,10 +32,6 @@ onMounted(() => {
       <div class="bottom_time">
         <div class="time_text">上次登录时间:</div>
         <div class="time_info">{{ nowTime }}</div>
-      </div>
-      <div class="bottom_address">
-        <div class="address_text">上次登录地点:</div>
-        <div class="address_info">{{ loginAddress }}</div>
       </div>
       <iframe
         id="geoPage"
