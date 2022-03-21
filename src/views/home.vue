@@ -15,13 +15,16 @@ import Tabs from '@/components/common/Tabs.vue'
       <Aside />
       <!-- 主体 -->
       <!-- 标签栏 -->
+
       <el-main>
         <Tabs />
-        <router-view v-slot="{ Component }">
-          <keep-alive>
-            <component :is="Component" />
-          </keep-alive>
-        </router-view>
+        <el-scrollbar height="850px">
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
+        </el-scrollbar>
       </el-main>
     </el-container>
   </el-container>

@@ -6,6 +6,8 @@ import screenfull from 'screenfull'
 const store = useStore()
 const router = useRouter()
 
+const user_name = ref<string>('')
+
 // 点击全屏
 const clickFull = () => {
   if (screenfull.isEnabled) {
@@ -17,6 +19,9 @@ const nextLogin = () => {
   window.sessionStorage.removeItem('token')
   router.push('/login')
 }
+onMounted(() => {
+  user_name.value = window.sessionStorage.getItem('user_name') as string
+})
 </script>
 
 <template>
@@ -44,7 +49,7 @@ const nextLogin = () => {
       <div class="right_name">
         <el-dropdown>
           <span style="cursor: pointer">
-            admin
+            {{ user_name }}
             <el-icon>
               <component is="arrowdown"></component>
             </el-icon>

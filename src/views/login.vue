@@ -8,8 +8,8 @@ const router = useRouter()
 const store = useStore()
 // 登录数据
 const loginUserParams = reactive<UserParamsType>({
-  user_name: 'admin',
-  password: '123456',
+  user_name: '',
+  password: '',
 })
 // 注册数据
 const registerUserParams = reactive<UserParamsType>({
@@ -38,6 +38,7 @@ const loginClick = async () => {
   }
   window.sessionStorage.setItem('nowTime', getnowTime())
   window.sessionStorage.removeItem('path')
+  window.sessionStorage.setItem('user_name', loginUserParams.user_name)
   store.changPath()
 }
 // 注册
