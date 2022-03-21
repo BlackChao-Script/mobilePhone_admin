@@ -9,3 +9,17 @@ export type PagDataTyoe = {
   pageSize: number
   total: number
 }
+// 分类表格columns数据类型
+export type ColumnsType = {
+  label: string
+  prop?: string
+  __slotName?: string
+}
+// 表单Item数据数据类型
+export type ItemType = {
+  label: string
+  field: string
+  itemType: string
+  placeholder?: string
+  option?: object
+}

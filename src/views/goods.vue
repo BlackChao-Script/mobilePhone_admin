@@ -3,10 +3,11 @@ import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
 import Pagination from '@/components/common/Pagination.vue'
 import TableHook from '@/hooks/TableHooks'
+import { ColumnsType, ItemType } from '@/types'
 
 //! 数据
 // 商品分类表格columns数据
-const columns = ref<Array<any>>([
+const columns = ref<Array<ColumnsType>>([
   { label: 'Id', prop: 'id' },
   { label: '商品名称', prop: 'goods_name' },
   { label: '商品价格', prop: 'goods_price' },
@@ -16,7 +17,7 @@ const columns = ref<Array<any>>([
   { label: '操作', __slotName: 'operation' },
 ])
 // 商品表单Item数据
-const goodsFormItem = ref<Array<any>>([
+const goodsFormItem = ref<Array<ItemType>>([
   {
     label: '商品名称',
     field: 'goods_name',
@@ -58,7 +59,16 @@ const goodsFormItem = ref<Array<any>>([
 
 //! 使用Hooks
 // 使用TableHook Hooks
-const { TableData, PagData, formData, editDrawer, closeDrawer, addGoods, getTableData, delTableData } = TableHook('goods')
+const {
+  TableData,
+  PagData,
+  formData,
+  editDrawer,
+  closeDrawer,
+  addGoods,
+  getTableData,
+  delTableData
+} = TableHook('goods')
 
 provide('formData', formData)
 

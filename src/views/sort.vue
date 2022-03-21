@@ -2,16 +2,17 @@
 import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
 import TableHooks from '@/hooks/TableHooks'
+import { ColumnsType, ItemType } from '@/types'
 
 //! 数据
 // 分类表格columns数据
-const columns = ref<Array<any>>([
+const columns = ref<Array<ColumnsType>>([
   { label: 'Id', prop: 'id' },
   { label: '分类名称', prop: 'sort_name' },
   { label: '操作', __slotName: 'operation' }
 ])
 // 分类表单Item数据
-const sortFormItem = ref<Array<any>>([
+const sortFormItem = ref<Array<ItemType>>([
   {
     label: '分类名称',
     field: 'sort_name',
@@ -57,4 +58,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
+.el-card {
+  margin: 15px;
+}
 </style>

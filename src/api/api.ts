@@ -111,10 +111,41 @@ export class CarouselService {
     return request(`carousel/delcarouse/${id}`, params, 'DELETE')
   }
 }
+//! 地址接口
+export class AddressService {
+  // 添加地址
+  static async add(params: object) {
+    return request('address/addtoaddress', params, 'POST')
+  }
+  // 获取地址
+  static async get(params: object) {
+    return request('address', params, 'GET')
+  }
+  // 修改地址
+  static async update(id: number, params: object) {
+    return request(`address/${id}`, params, 'PUT')
+  }
+  // 删除地址
+  static async rem(id: number, params: object) {
+    return request(`address/${id}`, params, 'DELETE')
+  }
+}
 //! 订单接口
 export class OrderService {
   // 获取订单数量
   static async num(params: object) {
     return request('order/ordernum', params, 'GET')
+  }
+  // 提交订单
+  static async add(params: object) {
+    return request('order', params, 'POST')
+  }
+  // 获取订单列表
+  static async get(params: object) {
+    return request('order', params, 'GET')
+  }
+  // 更新订单状态
+  static async update(id: number, params: object) {
+    return request(`order/${id}`, params, 'PATCH')
   }
 }

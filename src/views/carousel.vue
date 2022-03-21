@@ -2,18 +2,18 @@
 import Table from '@/components/common/Table.vue'
 import Drawer from '@/components/common/Drawer.vue'
 import TableHook from '@/hooks/TableHooks'
+import { ColumnsType, ItemType } from '@/types'
 
 //! 数据
 // 轮播图columns数据
-const columns = ref<Array<any>>([
+const columns = ref<Array<ColumnsType>>([
   { label: 'Id', prop: 'id' },
   { label: '轮播图名称', prop: 'carousel_name' },
   { label: '轮播图地址', prop: 'carousel_src', __slotName: 'carousel_src' },
-  { lable: '轮播图链接', prop: 'carousel_link' },
   { label: '操作', __slotName: 'operation' },
 ])
 // 轮播图Item数据
-const carouselForm = ref<Array<any>>([
+const carouselForm = ref<Array<ItemType>>([
   {
     label: '轮播图名称',
     field: 'carousel_name',
@@ -88,4 +88,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
+.el-card {
+  margin: 15px;
+}
 </style>
