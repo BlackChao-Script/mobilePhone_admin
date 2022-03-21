@@ -19,6 +19,29 @@ export class UserService {
     return request('user', params, 'GET')
   }
 }
+//! todo接口
+export class TodoService {
+  // 添加todo
+  static async add(params: object) {
+    return request('todo/addtodo', params, 'POST')
+  }
+  // 获取todo列表
+  static async get(params: object) {
+    return request('todo', params, 'GET')
+  }
+  // 删除todo
+  static async del(id: number, params: object) {
+    return request(`todo/${id}`, params, 'DELETE')
+  }
+  // 选中
+  static async check(id: number, params: object) {
+    return request(`todo/check/${id}`, params, 'POST')
+  }
+  // 取消选中
+  static async uncheck(id: number, params: object) {
+    return request(`todo/uncheck/${id}`, params, 'POST')
+  }
+}
 //! 商品接口
 export class GoodsService {
   // 获取商品数量
@@ -69,33 +92,29 @@ export class SortService {
     return request(`sort/${id}`, params, 'DELETE')
   }
 }
+//! 轮播图接口
+export class CarouselService {
+  // 创建轮播图
+  static async create(params: object) {
+    return request('carousel/create', params, 'POST')
+  }
+  // 获取轮播图列表
+  static async get(params: object) {
+    return request('carousel', params, 'GET')
+  }
+  // 修改轮播图
+  static async update(id: number, params: object) {
+    return request(`/carousel/create/${id}`, params, 'PUT')
+  }
+  // 删除轮播图
+  static async rem(id: number, params: object) {
+    return request(`carousel/delcarouse/${id}`, params, 'DELETE')
+  }
+}
 //! 订单接口
 export class OrderService {
   // 获取订单数量
   static async num(params: object) {
     return request('order/ordernum', params, 'GET')
-  }
-}
-//! todo接口
-export class TodoService {
-  // 添加todo
-  static async add(params: object) {
-    return request('todo/addtodo', params, 'POST')
-  }
-  // 获取todo列表
-  static async get(params: object) {
-    return request('todo', params, 'GET')
-  }
-  // 删除todo
-  static async del(id: number, params: object) {
-    return request(`todo/${id}`, params, 'DELETE')
-  }
-  // 选中
-  static async check(id: number, params: object) {
-    return request(`todo/check/${id}`, params, 'POST')
-  }
-  // 取消选中
-  static async uncheck(id: number, params: object) {
-    return request(`todo/uncheck/${id}`, params, 'POST')
   }
 }

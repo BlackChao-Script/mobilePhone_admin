@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { ElNotification } from 'element-plus'
-import { GoodsService, SortService } from '@/api/api'
+import { GoodsService, SortService, CarouselService } from '@/api/api'
 import { useStore } from '@/store'
 import TableHook from '@/hooks/TableHooks'
 
@@ -38,7 +38,12 @@ const successImg = (file: any) => {
     type: 'success',
   })
   disabledUpload.value = true
-  formData.goods_img = file.result.file_path
+  if (type == 'goods') {
+    formData.value.goods_img = file.result.file_path
+  }
+  if (type == 'carousel') {
+    formData.value.carousel_src = file.result.file_path
+  }
 }
 // 图片上传失败的钩子
 const errorImg = () => {
@@ -85,6 +90,16 @@ const submitForm = () => {
       }
 
     }
+    if (type == 'carousel') {
+      const { id, ...params } = formData.value
+      if (store.showEdit) {
+        params.carousel_src = params.carousel_src.split('/')[4]
+        await CarouselService.update(id, params)
+      } else {
+        formData.value.carousel_src = formData.value.carousel_src.split('/')[4]
+        await CarouselService.create(formData.value)
+      }
+    }
     store.changDrawer()
     getTableData()
   })
@@ -108,7 +123,7 @@ const submitForm = () => {
             </template>
             <template v-if="item.itemType === 'upload'">
               <div v-if="formData.id">
-                <el-image :src="formData.goods_img"></el-image>
+                <el-image :src="formData.goods_img || formData.carousel_src"></el-image>
               </div>
               <div v-else>
                 <el-upload

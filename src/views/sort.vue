@@ -11,7 +11,7 @@ const columns = ref<Array<any>>([
   { label: '操作', __slotName: 'operation' }
 ])
 // 分类表单Item数据
-const sortFromItem = ref<Array<any>>([
+const sortFormItem = ref<Array<any>>([
   {
     label: '分类名称',
     field: 'sort_name',
@@ -53,7 +53,7 @@ onMounted(() => {
     </Table>
   </el-card>
   <!-- 抽屉 -->
-  <Drawer :FormItem="sortFromItem" type="sort" btnNumber="添加(修改)分类" @closeDrawer="closeDrawer" />
+  <Drawer :FormItem="sortFormItem" type="sort" btnNumber="添加(修改)分类" @closeDrawer="closeDrawer" />
 </template>
 
 <style scoped lang="less">

@@ -4,6 +4,8 @@ const Login = () => import('@/views/login.vue')
 const Dashboard = () => import('@/views/dashboard.vue')
 const Goods = () => import('@/views/goods.vue')
 const Sort = () => import('@/views/sort.vue')
+const Carousel = () => import('@/views/carousel.vue')
+
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/login' },
   {
@@ -40,6 +42,15 @@ const routes: Array<RouteRecordRaw> = [
           KeepAlive: true,
           comp: Sort,
           name: '分类管理',
+        },
+      },
+      {
+        path: 'carousel',
+        component: Carousel,
+        meta: {
+          KeepAlive: true,
+          comp: Carousel,
+          name: '轮播图管理',
         },
       },
     ],
