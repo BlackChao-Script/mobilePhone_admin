@@ -6,6 +6,7 @@ const Goods = () => import('@/views/goods.vue')
 const Sort = () => import('@/views/sort.vue')
 const Carousel = () => import('@/views/carousel.vue')
 const Address = () => import('@/views/address.vue')
+const Order = () => import('@/views/order.vue')
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/login' },
@@ -61,6 +62,15 @@ const routes: Array<RouteRecordRaw> = [
           KeepAlive: true,
           comp: Address,
           name: '地址管理',
+        },
+      },
+      {
+        path: 'order',
+        component: Order,
+        meta: {
+          KeepAlive: true,
+          comp: Order,
+          name: '订单管理',
         },
       },
     ],

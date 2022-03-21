@@ -117,9 +117,9 @@ export class AddressService {
   static async add(params: object) {
     return request('address/addtoaddress', params, 'POST')
   }
-  // 获取地址
+  // 获取地址列表
   static async get(params: object) {
-    return request('address', params, 'GET')
+    return request('address/admin', params, 'GET')
   }
   // 修改地址
   static async update(id: number, params: object) {
@@ -135,10 +135,6 @@ export class OrderService {
   // 获取订单数量
   static async num(params: object) {
     return request('order/ordernum', params, 'GET')
-  }
-  // 提交订单
-  static async add(params: object) {
-    return request('order', params, 'POST')
   }
   // 获取订单列表
   static async get(params: object) {

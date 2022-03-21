@@ -59,7 +59,7 @@ const echartsOption = (Option: string) => {
       },
     ],
   }
-  //柱状图配置项
+  // 柱状图配置项
   const labelOption: object = {
     show: true,
     position: 'insideBottom',
@@ -191,6 +191,7 @@ const echartsOption = (Option: string) => {
       },
     ],
   }
+
   if (Option == 'pieOption') {
     option.value = pieOption
   }

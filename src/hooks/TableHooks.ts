@@ -1,4 +1,10 @@
-import { GoodsService, SortService, CarouselService } from '@/api/api'
+import {
+  GoodsService,
+  SortService,
+  CarouselService,
+  AddressService,
+  OrderService,
+} from '@/api/api'
 import { PagDataTyoe } from '@/types'
 import { useStore } from '@/store'
 
@@ -38,6 +44,20 @@ const TableHook = (type: string) => {
       carousel_link: '',
     })
   }
+  // 地址表单数据
+  if (type == 'address') {
+    formData = ref({
+      consignee: '',
+      phone: '',
+      address: '',
+    })
+  }
+  // 订单表单数据
+  if (type == 'order') {
+    formData = ref({
+      state: 0,
+    })
+  }
   // 获取表格数据
   const getTableData = async () => {
     // 获取商品数据
@@ -60,7 +80,16 @@ const TableHook = (type: string) => {
       TableData.value = res.result.list
     }
     // 获取地址数据
+    if (type == 'address') {
+      const res = (await AddressService.get({})) as any
+      TableData.value = res.result
+    }
     // 获取订单数据
+    if (type == 'order') {
+      const res = (await OrderService.get({})) as any
+      PagData.total = res.result.total
+      TableData.value = res.result.list
+    }
   }
   // 删除数据
   const delTableData = async (id: number) => {
@@ -74,6 +103,11 @@ const TableHook = (type: string) => {
     }
     if (type == 'carousel') {
       await CarouselService.rem(id, {})
+      getTableData()
+    }
+    if (type == 'address') {
+      await AddressService.rem(id, {})
+      getTableData()
     }
   }
   // 打开编辑数据抽屉

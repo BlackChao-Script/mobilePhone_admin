@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { ElNotification } from 'element-plus'
-import { GoodsService, SortService, CarouselService } from '@/api/api'
+import { GoodsService, SortService, CarouselService, AddressService, OrderService } from '@/api/api'
 import { useStore } from '@/store'
 import TableHook from '@/hooks/TableHooks'
 
@@ -100,6 +100,18 @@ const submitForm = () => {
         await CarouselService.create(formData.value)
       }
     }
+    if (type == 'address') {
+      const { id, user_id, ...params } = formData.value
+      if (store.showEdit) {
+        await AddressService.update(id, params)
+      } else {
+        await AddressService.add(params)
+      }
+    }
+    if (type == 'order') {
+      const { state, id, ...params } = formData.value
+      await OrderService.update(id, { state })
+    }
     store.changDrawer()
     getTableData()
   })
@@ -141,6 +153,15 @@ const submitForm = () => {
                   </el-icon>
                 </el-upload>
               </div>
+            </template>
+            <template v-if="item.itemType === 'select'">
+              <el-select v-model="formData[`${item.field}`]" placeholder="请选择状态">
+                <el-option label="未支付" :value="0" />
+                <el-option label="已支付" :value="1" />
+                <el-option label="已发货" :value="2" />
+                <el-option label="已签收" :value="3" />
+                <el-option label="取消" :value="4" />
+              </el-select>
             </template>
           </el-form-item>
         </template>
