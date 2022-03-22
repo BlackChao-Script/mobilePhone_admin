@@ -33,7 +33,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Goods,
         meta: {
           KeepAlive: true,
-          comp: Goods,
           name: '商品管理',
         },
       },
@@ -42,7 +41,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Sort,
         meta: {
           KeepAlive: true,
-          comp: Sort,
           name: '分类管理',
         },
       },
@@ -51,7 +49,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Carousel,
         meta: {
           KeepAlive: true,
-          comp: Carousel,
           name: '轮播图管理',
         },
       },
@@ -60,7 +57,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Address,
         meta: {
           KeepAlive: true,
-          comp: Address,
           name: '地址管理',
         },
       },

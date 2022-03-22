@@ -2,6 +2,7 @@
 import Hearder from '@/components/common/Header.vue'
 import Aside from '@/components/common/Aside.vue'
 import Tabs from '@/components/common/Tabs.vue'
+
 </script>
 
 <template>
@@ -15,16 +16,13 @@ import Tabs from '@/components/common/Tabs.vue'
       <Aside />
       <!-- 主体 -->
       <!-- 标签栏 -->
-
       <el-main>
         <Tabs />
-        <el-scrollbar height="850px">
-          <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component }">
             <keep-alive>
               <component :is="Component" />
             </keep-alive>
-          </router-view>
-        </el-scrollbar>
+        </router-view>
       </el-main>
     </el-container>
   </el-container>

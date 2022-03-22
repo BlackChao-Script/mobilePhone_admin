@@ -2,11 +2,21 @@
 import { useStore } from '@/store'
 import { useRouter } from 'vue-router'
 import screenfull from 'screenfull'
+import { UserService } from '@/api/api'
 
 const store = useStore()
 const router = useRouter()
 
+// 用户名
 const user_name = ref<string>('')
+// 控制修改密码对话框
+const dialogVisible = ref<boolean>(false)
+// 修改密码表单
+let passwordData = reactive<any>({
+  Password: '',
+})
+// 获取修改密码Ref
+const passwordRef = ref<HTMLElement | any>(null)
 
 // 点击全屏
 const clickFull = () => {
@@ -14,6 +24,25 @@ const clickFull = () => {
     screenfull.toggle()
   }
 }
+// 打开修改密码对话框
+const showDialog = () => {
+  dialogVisible.value = true
+}
+// 关闭修改密码对话框的钩子
+const closedDialog = () => {
+  passwordData.Password = ''
+  passwordData.SurePassword = ''
+}
+// 点击提交修改密码表单
+const subPasswordForm = () => {
+  passwordRef.value.validate(async (valid: any) => {
+    if (!valid) return
+    const password = passwordData.Password
+    await UserService.modify({ password })
+    dialogVisible.value = false
+  })
+}
+
 // 退出登录
 const nextLogin = () => {
   window.sessionStorage.removeItem('token')
@@ -62,6 +91,7 @@ onMounted(() => {
                   target="_blank"
                 >项目地址</el-link>
               </el-dropdown-item>
+              <el-dropdown-item @click="showDialog">修改密码</el-dropdown-item>
               <el-dropdown-item @click="nextLogin">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -69,6 +99,19 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <el-dialog v-model="dialogVisible" title="修改密码" width="30%" @closed="closedDialog">
+    <!-- 修改密码表单 -->
+    <el-form ref="passwordRef" :model="passwordData">
+      <el-form-item label-width="70px" label="新密码">
+        <el-input v-model="passwordData.Password" />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="subPasswordForm">完成</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <style scoped lang="less">
