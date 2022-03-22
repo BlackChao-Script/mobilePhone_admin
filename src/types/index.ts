@@ -23,3 +23,19 @@ export type ItemType = {
   placeholder?: string
   option?: object
 }
+// 修改密码表单类型
+export type passwordDataType = {
+  Password: string
+}
+// 柱状图配置项数据类型
+export type labelOptionType = {
+  show: Boolean
+  position: string
+  distance: number
+  align: string
+  verticalAlign: string
+  rotate: number
+  formatter: string
+  fontSize: number
+  rich: object
+}

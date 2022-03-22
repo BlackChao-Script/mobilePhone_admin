@@ -87,5 +87,5 @@ export function request(url = '', params = {}, type = '') {
         })
         reject(err)
       })
-  })
+  }) as any
 }

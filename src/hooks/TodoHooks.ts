@@ -9,7 +9,7 @@ const TodoHooks = () => {
 
   // 获取todo列表
   const gettodo = async () => {
-    const res = (await TodoService.get({})) as any
+    const res = (await TodoService.get({}))
     todoListData.value = res.result
     const bool = todoListData.value.every((value) => value.check == true)
     if (bool == true) {

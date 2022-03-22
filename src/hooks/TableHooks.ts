@@ -19,7 +19,7 @@ const TableHook = (type: string) => {
     total: 0,
   })
   // 表单数据
-  let formData = ref<any>({})
+  let formData = ref<object>({})
   // 商品表单数据
   if (type == 'goods') {
     formData = ref({
@@ -62,7 +62,7 @@ const TableHook = (type: string) => {
   const getTableData = async () => {
     // 获取商品数据
     if (type == 'goods') {
-      const res = (await GoodsService.get(PagData)) as any
+      const res = (await GoodsService.get(PagData))
       res.result.list.forEach((value: any) => {
         value.createGoodsTime = value.createGoodsTime.split('T')[0]
       })
@@ -71,22 +71,22 @@ const TableHook = (type: string) => {
     }
     // 获取分类数据
     if (type == 'sort') {
-      const res = (await SortService.get({})) as any
+      const res = (await SortService.get({}))
       TableData.value = res.result
     }
     // 获取轮播图数据
     if (type == 'carousel') {
-      const res = (await CarouselService.get({})) as any
+      const res = (await CarouselService.get({}))
       TableData.value = res.result.list
     }
     // 获取地址数据
     if (type == 'address') {
-      const res = (await AddressService.get({})) as any
+      const res = (await AddressService.get({}))
       TableData.value = res.result
     }
     // 获取订单数据
     if (type == 'order') {
-      const res = (await OrderService.get({})) as any
+      const res = (await OrderService.get({}))
       PagData.total = res.result.total
       TableData.value = res.result.list
     }

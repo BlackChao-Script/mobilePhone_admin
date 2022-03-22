@@ -3,6 +3,7 @@ import { useStore } from '@/store'
 import { useRouter } from 'vue-router'
 import screenfull from 'screenfull'
 import { UserService } from '@/api/api'
+import { passwordDataType } from '@/types'
 
 const store = useStore()
 const router = useRouter()
@@ -12,7 +13,7 @@ const user_name = ref<string>('')
 // 控制修改密码对话框
 const dialogVisible = ref<boolean>(false)
 // 修改密码表单
-let passwordData = reactive<any>({
+let passwordData = reactive<passwordDataType>({
   Password: '',
 })
 // 获取修改密码Ref
@@ -31,7 +32,6 @@ const showDialog = () => {
 // 关闭修改密码对话框的钩子
 const closedDialog = () => {
   passwordData.Password = ''
-  passwordData.SurePassword = ''
 }
 // 点击提交修改密码表单
 const subPasswordForm = () => {

@@ -1,4 +1,6 @@
 import echarts from '@/utils/ecarts'
+import { labelOptionType } from '@/types'
+
 const echartsOption = (Option: string) => {
   const MyEchartsRef = ref<HTMLElement | any>(null)
   let ChartsInit: any
@@ -60,7 +62,7 @@ const echartsOption = (Option: string) => {
     ],
   }
   // 柱状图配置项
-  const labelOption: object = {
+  const labelOption: labelOptionType = {
     show: true,
     position: 'insideBottom',
     distance: 19,

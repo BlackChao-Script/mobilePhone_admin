@@ -7,15 +7,15 @@ const orderNumber = ref<number>(0)
 
 const getNumber = async (dataType: string) => {
   if (dataType == 'user') {
-    const res = await UserService.num({}) as any
+    const res = await UserService.num({})
     userNumber.value = res.result.number
   }
   if (dataType == 'goods') {
-    const res = await GoodsService.num({}) as any
+    const res = await GoodsService.num({})
     goodsNumber.value = res.result.number
   }
   if (dataType == 'order') {
-    const res = await OrderService.num({}) as any
+    const res = await OrderService.num({})
     orderNumber.value = res.result.number
   }
 }

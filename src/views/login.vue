@@ -18,7 +18,7 @@ const registerUserParams = reactive<UserParamsType>({
 })
 // 登录
 const loginClick = async () => {
-  const res = (await UserService.login(loginUserParams)) as any
+  const res = (await UserService.login(loginUserParams))
   const { token } = res.result
   window.sessionStorage.setItem('token', token)
   router.push('/home')
