@@ -77,7 +77,7 @@ const submitForm = () => {
         formData.value.goods_price = formData.value.goods_price * 1
         formData.value.sort_id = parseInt(formData.value.sort_id)
         formData.value.goods_num = parseInt(formData.value.goods_num)
-        formData.value.goods_img = formData.goods_img.split('/')[4]
+        formData.value.goods_img = formData.value.goods_img.split('/')[4]
         await GoodsService.add(formData.value)
       }
     }
