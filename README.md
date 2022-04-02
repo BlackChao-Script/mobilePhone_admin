@@ -8,7 +8,7 @@ mobilePhone商城 项目市一套电商系统，包括: mobilePhone_mall (pc网�
 
 **后台管理系统包含**：数据面板、轮播图管理、商品管理、订单管理、分类管理。
 
-本仓库中的源码是mobilePhone商城的后台管理系统项目，技术栈为: `Vue3 + Ts`。其它源码在另外几个仓库中。
+本仓库中的源码是mobilePhone商城的后台管理系统项目，技术栈为: `Vue3 + Ts + Echarts + Element_plus` 。其它源码在另外几个仓库中。
 
 项目仓库地址：
 
